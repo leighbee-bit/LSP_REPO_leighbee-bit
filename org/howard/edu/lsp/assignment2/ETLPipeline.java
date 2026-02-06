@@ -1,6 +1,4 @@
-import java.io.*;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+package org.howard.edu.lsp.assignment2;
 
 import java.io.*;
 import java.math.BigDecimal;
@@ -17,11 +15,12 @@ public class ETLPipeline {
         int rowsTransformed = 0;
         int rowsSkipped = 0;
 
-        Path dataDir = Paths.get("data");
+        // Look in src/data instead
+        Path dataDir = Paths.get(System.getProperty("user.dir")).resolve("src").resolve("data");
         Path inputPath = dataDir.resolve("products.csv");
         Path outputPath = dataDir.resolve("transformed_products.csv");
 
-        // Handle missing input file
+        // Check if input file exists
         if (!Files.exists(inputPath)) {
             System.out.println("Error: Input file not found at " + inputPath.toString());
             return;
@@ -36,14 +35,13 @@ public class ETLPipeline {
         }
 
         try (
-            BufferedReader reader = Files.newBufferedReader(inputPath, StandardCharsets.UTF_8);
-            BufferedWriter writer = Files.newBufferedWriter(outputPath, StandardCharsets.UTF_8)
-        ) {
-            // Always write header
+                BufferedReader reader = Files.newBufferedReader(inputPath, StandardCharsets.UTF_8);
+                BufferedWriter writer = Files.newBufferedWriter(outputPath, StandardCharsets.UTF_8)) {
+            // Write header row
             writer.write("ProductID,Name,Price,Category,PriceRange");
             writer.newLine();
 
-            String line = reader.readLine(); // header
+            String line = reader.readLine(); // skip header
             if (line == null) {
                 printSummary(rowsRead, rowsTransformed, rowsSkipped, outputPath);
                 return;
@@ -71,7 +69,7 @@ public class ETLPipeline {
 
                     String originalCategory = category;
 
-                    // 10% discount for Electronics
+                    // 10% discount if Electronics
                     if (category.equals("Electronics")) {
                         price = price.multiply(new BigDecimal("0.9"));
                     }
@@ -81,11 +79,11 @@ public class ETLPipeline {
 
                     // Premium Electronics rule
                     if (price.compareTo(new BigDecimal("500.00")) > 0 &&
-                        originalCategory.equals("Electronics")) {
+                            originalCategory.equals("Electronics")) {
                         category = "Premium Electronics";
                     }
 
-                    // Price range
+                    // Determine price range
                     String priceRange;
                     if (price.compareTo(new BigDecimal("10.00")) <= 0) {
                         priceRange = "Low";
@@ -98,10 +96,10 @@ public class ETLPipeline {
                     }
 
                     writer.write(productId + "," +
-                                 name + "," +
-                                 price.toPlainString() + "," +
-                                 category + "," +
-                                 priceRange);
+                            name + "," +
+                            price.toPlainString() + "," +
+                            category + "," +
+                            priceRange);
                     writer.newLine();
 
                     rowsTransformed++;
