@@ -15,7 +15,6 @@ public class ETLPipeline {
         int rowsTransformed = 0;
         int rowsSkipped = 0;
 
-        // Look in src/data instead
         Path dataDir = Paths.get(System.getProperty("user.dir")).resolve("data");
         Path inputPath = dataDir.resolve("products.csv");
         Path outputPath = dataDir.resolve("transformed_products.csv");
