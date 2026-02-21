@@ -73,6 +73,7 @@ Here's a quick rundown of the most common Markdown syntax:
 `inline code`
 ```code block```
 ```
+
 ```
 **Blockquotes**
 
@@ -86,6 +87,7 @@ This is a quote
 Column 1Column 2Cell 1Cell 2
 
 **Strikethrough** (supported in most renderers)
-strikethrough
+~~~strikethrough~~~
+```
 
 That covers the vast majority of what you'll use day to day. The great thing about Markdown is that even if it's not rendered, the raw text is still very readable on its own.
