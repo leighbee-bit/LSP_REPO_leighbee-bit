@@ -14,12 +14,23 @@ import java.util.stream.Collectors;
 
 public class ProductTransformer {
 
+    /**
+     * An additional method that uses .transform() for all objects
+     * in a list of Products
+     * @param products
+     * @return products, a list of discounted Products
+     */
     public List<Product> transformAll(List<Product> products) {
         return products.stream()
                 .map(this::transform)
                 .collect(Collectors.toList());
     }
 
+    /**
+     * A
+     * @param product, a Product object
+     * @return product, a discounted version of the same object
+     */
     private Product transform(Product product) {
         BigDecimal price = product.getPrice();
         String category = product.getCategory();

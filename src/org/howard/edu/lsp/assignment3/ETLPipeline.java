@@ -54,6 +54,15 @@ public class ETLPipeline {
         }
     }
 
+    /**
+     * A method used to print out results and any important information after
+     * the program has been run
+     * @param read
+     * @param transformed
+     * @param skipped
+     * @param outputPath
+     * @return void
+     */
     private static void printSummary(int read, int transformed, int skipped, Path outputPath) {
         System.out.println("Run Summary:");
         System.out.println("Rows read: " + read);

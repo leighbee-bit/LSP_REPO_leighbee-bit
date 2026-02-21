@@ -22,10 +22,17 @@ public class ProductReader {
     private int rowsRead = 0;
     private int rowsSkipped = 0;
 
+    //Constructor
     public ProductReader(Path inputPath) {
         this.inputPath = inputPath;
     }
 
+    /**Parses through the input file and creates Product objects to be referenced
+     * in other classes. 
+     * @param: None, utilizes file path from object attributes
+     * @return: A list of Product objects
+     * @throws: IOException, given the file path does not exist.
+     * */
     public List<Product> read() throws IOException {
         List<Product> products = new ArrayList<>();
 
@@ -64,6 +71,16 @@ public class ProductReader {
         return products;
     }
 
+    /**
+     * Returns the amount of rows read in the input file in total.
+     * @param: none
+     * @return: An int representing the amount of rows read
+     */
     public int getRowsRead() { return rowsRead; }
+    /**
+     * Returns the amount of rows skipped in the input file in total.
+     * @param: none
+     * @return: An int representing the amount of rows skipped
+     */
     public int getRowsSkipped() { return rowsSkipped; }
 }

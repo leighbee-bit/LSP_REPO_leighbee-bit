@@ -17,10 +17,16 @@ import java.util.List;
 public class ProductWriter {
     private final Path outputPath;
 
+    //Constructor
     public ProductWriter(Path outputPath) {
         this.outputPath = outputPath;
     }
 
+    /**
+     * A method used to write a list of Products into a .csv file 
+     * @param products
+     * @throws IOException
+     */
     public void write(List<Product> products) throws IOException {
         try (BufferedWriter writer = Files.newBufferedWriter(outputPath, StandardCharsets.UTF_8)) {
             writer.write("ProductID,Name,Price,Category,PriceRange");
