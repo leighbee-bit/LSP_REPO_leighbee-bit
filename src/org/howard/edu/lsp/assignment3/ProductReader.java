@@ -19,12 +19,15 @@ import java.util.List;
 
 public class ProductReader {
     private final Path inputPath;
-    private int rowsRead = 0;
-    private int rowsSkipped = 0;
+    private int rowsRead;
+    private int rowsSkipped;
+
 
     //Constructor
     public ProductReader(Path inputPath) {
         this.inputPath = inputPath;
+        this.rowsRead = 0;
+        this.rowsSkipped = 0;
     }
 
     /**Parses through the input file and creates Product objects to be referenced
@@ -41,16 +44,16 @@ public class ProductReader {
             if (line == null) return products;
 
             while ((line = reader.readLine()) != null) {
-                rowsRead++;
+                this.rowsRead++;
 
                 if (line.trim().isEmpty()) {
-                    rowsSkipped++;
+                    this.rowsSkipped++;
                     continue;
                 }
 
                 String[] fields = line.split(",");
                 if (fields.length != 4) {
-                    rowsSkipped++;
+                    this.rowsSkipped++;
                     continue;
                 }
 
@@ -63,7 +66,7 @@ public class ProductReader {
                     //Actively creating the new Product object
                     products.add(new Product(productId, name, price, category));
                 } catch (NumberFormatException e) {
-                    rowsSkipped++;
+                    this.rowsSkipped++;
                 }
             }
         }
@@ -71,16 +74,7 @@ public class ProductReader {
         return products;
     }
 
-    /**
-     * Returns the amount of rows read in the input file in total.
-     * @param: none
-     * @return: An int representing the amount of rows read
-     */
+    //Getters and setters
     public int getRowsRead() { return rowsRead; }
-    /**
-     * Returns the amount of rows skipped in the input file in total.
-     * @param: none
-     * @return: An int representing the amount of rows skipped
-     */
     public int getRowsSkipped() { return rowsSkipped; }
 }

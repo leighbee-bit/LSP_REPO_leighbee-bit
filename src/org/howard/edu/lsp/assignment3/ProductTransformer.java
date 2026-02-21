@@ -27,7 +27,7 @@ public class ProductTransformer {
     }
 
     /**
-     * A
+     * A private method used to transform each Product in a list
      * @param product, a Product object
      * @return product, a discounted version of the same object
      */
