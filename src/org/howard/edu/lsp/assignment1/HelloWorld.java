@@ -1,4 +1,3 @@
-
 package org.howard.edu.lsp.assignment1;
 /**
  * Name: Leighla-Marie Dantes
