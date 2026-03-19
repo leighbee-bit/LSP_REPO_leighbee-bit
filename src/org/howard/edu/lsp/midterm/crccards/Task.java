@@ -1,10 +1,16 @@
 package org.howard.edu.lsp.midterm.crccards;
 
+/**
+ * Represents a single task with an ID, description, and status.
+ *
+ * @author Leighla-Marie Dantes
+ */
+
 public class Task {
 
-    String taskId;
-    String description;
-    String status = "OPEN";
+    private String taskId;
+    private String description;
+    private String status = "OPEN";
 
     public Task(String taskId, String description) {
         this.taskId = taskId;
@@ -19,6 +25,14 @@ public class Task {
         return this.description;
     }
 
+    /**
+     * Sets the status of this task. Valid values are OPEN, IN_PROGRESS, and
+     * COMPLETE.
+     * Any other value results in UNKNOWN.
+     *
+     * @param status the new status string
+     */
+
     public void setStatus(String status) {
         switch (status) {
             case "OPEN":
@@ -31,7 +45,7 @@ public class Task {
                 this.status = status;
                 break;
             default:
-                this.status="UNKNOWN";
+                this.status = "UNKNOWN";
         }
     }
 
@@ -40,8 +54,8 @@ public class Task {
     }
 
     public String toString() {
-        String final_status = this.taskId + " " + this.description + " " + 
-        "[" + this.status + "]";
+        String final_status = this.taskId + " " + this.description + " " +
+                "[" + this.status + "]";
         return final_status;
     }
 
