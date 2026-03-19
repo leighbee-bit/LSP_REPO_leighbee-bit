@@ -1,0 +1,1 @@
+**No external assisstance was used.**
