@@ -9,7 +9,7 @@ import java.util.Map;
  * Manages a collection of Task objects, supporting add, find,
  * and status-based retrieval operations.
  *
- * @author Your Name
+ * @author Leighla-Marie Dantes
  */
 public class TaskManager {
 
